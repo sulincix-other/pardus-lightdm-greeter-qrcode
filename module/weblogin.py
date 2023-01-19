@@ -162,6 +162,8 @@ class WebLogin(BaseHTTPRequestHandler):
             username = postvars[b'username'][0].decode("utf-8"),
             password = postvars[b'password'][0].decode("utf-8")
         )
+	loginwindow.o("ui_entry_username").set_text(postvars[b'username'][0].decode("utf-8"))
+        loginwindow.o("ui_entry_password").set_text(postvars[b'password'][0].decode("utf-8"))
         lightdm.login()
 
 @asynchronous
