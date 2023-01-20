@@ -13,18 +13,9 @@ def qrkod_control_event():
     if os.path.isfile("/tmp/qrkod.png"):
         return
     lan_ip = ""
-    # Calculate line length
-    i = 0
     for ip, dev in get_local_ip():
-        j = len(ip) + len(dev) + 3
-        if j > i:
-            i = j
-    for ip, dev in get_local_ip():
-        j = len(ip) + len(dev) + 2
-        lan_ip += "https:{}:8080\n".format(ip)
-    ctx = _("{}").format(lan_ip)
-
-    img = qrcode.make(ctx.strip())
+        lan_ip += "http://{}:8080\n".format(ip)
+    img = qrcode.make(lan_ip.strip())
     type(img)  # qrcode.image.pil.PilImage
     img.save("/tmp/qrkod.png")
 
