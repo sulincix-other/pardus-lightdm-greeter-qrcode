@@ -158,12 +158,12 @@ class WebLogin(BaseHTTPRequestHandler):
         self.end_headers()
         postvars = self.parse_POST()
         print(postvars,file=sys.stderr)
+        loginwindow.o("ui_entry_username").set_text(postvars[b'username'][0].decode("utf-8"))
+        loginwindow.o("ui_entry_password").set_text(postvars[b'password'][0].decode("utf-8"))
         lightdm.set(
             username = postvars[b'username'][0].decode("utf-8"),
             password = postvars[b'password'][0].decode("utf-8")
         )
-	loginwindow.o("ui_entry_username").set_text(postvars[b'username'][0].decode("utf-8"))
-        loginwindow.o("ui_entry_password").set_text(postvars[b'password'][0].decode("utf-8"))
         lightdm.login()
 
 @asynchronous
