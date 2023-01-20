@@ -6,7 +6,6 @@ qrimage = None
 
 def _qrkod_button_event(widget=None):
     qrpopover.popup()
-    GLib.idle_add(qrkod_control_event)
 
 @asynchronous
 def qrkod_control_event():
@@ -38,4 +37,5 @@ def module_init():
     button.get_style_context().add_class("icon")
     button.show_all()
     qrimage.show()
+    GLib.idle_add(qrkod_control_event)
     update_qr_image()
